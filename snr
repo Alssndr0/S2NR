@@ -24,13 +24,13 @@ t = the time you want to leave between the signal and the crisis (i.e. 12, 24)
     d = 0
     
     for i in np.arange(len(actual_crisis) - t):
-        if (signals[i] == True and actual_crisis[i + t] == True or 1):
+        if (signals[i] == True and actual_crisis[i + t] == True):
             a += 1
-        elif (signals[i] == True and actual_crisis[i + t] == False or 0):
+        elif (signals[i] == True and actual_crisis[i + t] == False):
             b += 1
-        elif (signals[i] == False and actual_crisis[i + t] == True or 1):
+        elif (signals[i] == False and actual_crisis[i + t] == True):
             c += 1
-        elif (signals[i] == False and actual_crisis[i + t] == False or 0):
+        elif (signals[i] == False and actual_crisis[i + t] == False):
             d += 1
     return (b/(b+d))/(a/(a+c))
  
