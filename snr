@@ -1,0 +1,33 @@
+def nsr(values, operator, threshold, actual_crisis, t):
+
+'''
+NOISE TO SIGNAL RATIO 
+(Kaminsky, Lizondo, Reinhart)
+
+values = the values you want to study, your array of data x 
+operator =  Under = call the function with operator argument = operator.lt #less than  - Over = call the functio with operator argument =  operator.gt #greater than 
+threshold = the cirtical value you set for the test, threshold above or under which you signal a crisis 
+actual crisis = a boolean array (0,1 or False/True) containing the actual crisis data
+t = the time you want to leave between the signal and the crisis (i.e. 12, 24)
+
+'''
+    
+    array_values = np.asanyarray(values)
+    signals = operator(array_values, threshold)
+   
+    a = 0
+    b = 0
+    c = 0
+    d = 0
+    
+    for i in np.arange(len(actual_crisis) - t):
+        if (signals[i] == True and actual_crisis[i + t] == True or 1):
+            a += 1
+        elif (signals[i] == True and actual_crisis[i + t] == False or 0):
+            b += 1
+        elif (signals[i] == False and actual_crisis[i + t] == True or 1):
+            c += 1
+        elif (signals[i] == False and actual_crisis[i + t] == False or 0):
+            d += 1
+    return (b/(b+d))/(a/(a+c))
+ 
