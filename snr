@@ -1,3 +1,6 @@
+import numpy as np 
+import operator
+
 def nsr(values, operator, threshold, actual_crisis, t):
 
 '''
